@@ -21,16 +21,16 @@
                         @forelse ($categories as $category)
                             <tr>
                                 <th>{{ $category->id }}</th>
-                                <td>{{ $category->title }}</td>
+                                <td><a href="{{ route('category', $category->id) }}">{{ $category->title }}</a></td>
                                 <td>{{ $category->description }}</td>
                             </tr>
                         @empty
-                            <p>There isn't any category.. create one <a href="{{ URL::route('add_category') }}" class="btn btn-primary">here</a></p>
+                            <p>There isn't any category.. create one <a href="{{ route('add_category') }}" class="btn btn-primary">here</a></p>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
-        <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Return</a>
+        <a href="{{ route('homepage') }}" class="btn btn-primary">Return</a>
     </div>
 @endsection

@@ -25,6 +25,6 @@
 
             </div>
         </div>
-        <a href="{{ URL::route('categories') }}" class="btn btn-primary">Return</a>
+        <a href="{{ route('categories') }}" class="btn btn-primary">Return</a>
     </div>
 @endsection

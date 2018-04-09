@@ -110,4 +110,11 @@ class CategoryController extends Controller
     {
        return categories::all();
     }
+
+    public function getCategory($id)
+    {
+        $category = categories::find($id);
+
+        return view('categories/category')->with('category', $category);
+    }
 }
