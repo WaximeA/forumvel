@@ -136,9 +136,9 @@ class CategoryController extends Controller
 
     public function getAddCategory()
     {
-        $data = $this->getSelectedCategories();
+        $categories = $this->getSelectedCategories();
 
-        return view('categories/add_category')->with('data', $data);
+        return view('categories/add_category')->with('categories', $categories);
     }
 
     public function getSelectedCategories()

@@ -53,9 +53,11 @@ class TopicController extends Controller
     public function getEditTopic($id)
     {
         $topic = Topics::find($id);
+        $categories = app('App\Http\Controllers\CategoryController')->getSelectedCategories();
 
         $data = [
             'topic' => $topic,
+            'categories' => $categories
         ];
 
         return view('topics/edit_topic')->with($data);
@@ -66,6 +68,7 @@ class TopicController extends Controller
         // Form fields values
         $title = $request->input('title');
         $content = $request->input('content');
+        $categoryId = $request->input('category_id');
         $topicId = $request->input('topic_id');
 
         $this->validate($request, [
@@ -77,6 +80,7 @@ class TopicController extends Controller
             ->update([
                 'title' => $title,
                 'content' => $content,
+                'category_id' => $categoryId
              ]);
 
         return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully create a new topic in the category #'.$topicId.' :)');

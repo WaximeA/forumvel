@@ -16,13 +16,12 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('parent_id', 'Parent category') }}
-                    {{ Form::select('parent_id', [null => 'Please Select'] + $data) }}
+                    {{ Form::select('parent_id', $categories, null, ['class' => 'form-control', 'placeholder' => 'There is no parent category'])  }}
                 </div>
                 <div>
                     {{ Form::submit('Submit', ['class'=>'btn btn-success btn-lg float-right']) }}
                 </div>
                 {!! Form::close() !!}
-
             </div>
         </div>
         <a href="{{ route('categories') }}" class="btn btn-primary">Return</a>
