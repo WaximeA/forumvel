@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('parent_id', 'Parent category') }}
-                    {{ Form::select('parent_id', ['' => '', 'L' => 'Large', 'S' => 'Small'], null) }}
+                    {{ Form::select('parent_id', [null => 'Please Select'] + $data) }}
                 </div>
                 <div>
                     {{ Form::submit('Submit', ['class'=>'btn btn-success btn-lg float-right']) }}
