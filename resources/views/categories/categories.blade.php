@@ -15,6 +15,7 @@
                         <th>#</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th># Parent</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                                 <th>{{ $category->id }}</th>
                                 <td><a href="{{ route('category', $category->id) }}">{{ $category->title }}</a></td>
                                 <td>{{ $category->description }}</td>
+                                <td>{{ $category->parent_id }}</td>
                             </tr>
                         @empty
                             <p>There isn't any category.. create one <a href="{{ route('add_category') }}" class="btn btn-primary">here</a></p>

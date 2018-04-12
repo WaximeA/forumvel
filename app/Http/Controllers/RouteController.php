@@ -15,9 +15,4 @@ class RouteController extends Controller
     {
         return view('categories/categories');
     }
-
-    public function getAddCategory()
-    {
-        return view('categories/add_category');
-    }
 }

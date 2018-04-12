@@ -15,6 +15,15 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->getCategories();
+        $subCategoriesNumber = 0;
+        foreach ($categories as $category){
+            $categoryId = $category->id;
+
+            $currentCategory = $this->getCategory($categoryId);
+            if ($currentCategory->id == $categoryId){
+                $subCategoriesNumber += 1;
+            }
+        }
 
         return view('categories/categories')->with('categories', $categories);
     }
@@ -87,6 +96,7 @@ class CategoryController extends Controller
 
     public function submitAddCategory(Request $request)
     {
+        // Form fields values
         $title = $request->input('title');
         $description = $request->input('description');
         $parentCategory = $request->input('parent_id');
@@ -116,5 +126,24 @@ class CategoryController extends Controller
         $category = categories::find($id);
 
         return view('categories/category')->with('category', $category);
+    }
+
+    public function getAddCategory()
+    {
+        $categories = $this->getCategories();
+
+        $data = [];
+        foreach ($categories as $key => $category){
+            $categoryId = $category->id;
+            $categorytitle = $category->title;
+            $data[$categoryId] = $categorytitle;
+        }
+
+        return view('categories/add_category')->with('data', $data);
+    }
+
+    public function getSubCategoriesNumber()
+    {
+
     }
 }
