@@ -10388,6 +10388,18 @@ a.text-dark:focus {
   }
 }
 
+.card a {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
 .child-category a {
   margin-left: 15px;
 }

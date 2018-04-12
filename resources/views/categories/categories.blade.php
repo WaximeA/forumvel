@@ -24,7 +24,7 @@
                 @forelse ($categories as $category)
                 @empty($category->parent_id )
                 <div class="card">
-                    <h5 class="card-header parent-category cat-{{$category->id}}"><a href="{{ route('category', $category->id) }}">{{ $category->title }}</a></h5>
+                    <h5 class="card-header parent-category cat-{{$category->id}}"><a href="{{ route('category', $category->id) }}">{{ $category->title }}</a> <p>{{$category->description}}</p></h5>
                 </div>
                 @endif
                 @isset($category->parent_id )
