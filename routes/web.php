@@ -21,3 +21,7 @@ Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/add-category', 'CategoryController@getAddCategory')->name('add_category');
 Route::post('/add-category/submit-add-category', 'CategoryController@submitAddCategory');
 Route::get('/category/{id}', 'CategoryController@getCategory')->name('category');
+
+// TOPICS
+Route::post('/add-topic/submit-add-topic', 'TopicController@submitAddTopic');
+Route::get('/topic/{id}', 'TopicController@getTopic')->name('topic');

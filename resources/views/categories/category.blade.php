@@ -4,10 +4,32 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1>{{ $category->title }}</h1>
+                <h1><b># {{$category->id}}</b> : {{ $category->title }}</h1>
                 <p>{{ $category->description }}</p>
             </div>
         </div>
+        <div class="row">&nbsp;</div>
+        <div class="row justify-content-center">
+            @include('topics/add_topic')
+        </div>
+        <div class="row">&nbsp;</div>
+        @foreach($topics as $topic)
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            {{ $topic->title }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Topic content : </h5>
+                            <p class="card-text">{{ $topic->content }}</p>
+                            <a href="{{ route('topic', $topic->id) }}" class="btn btn-primary">Go on the topic</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+        @endforeach
         <a href="{{ route('categories') }}" class="btn btn-primary">Return</a>
     </div>
 @endsection

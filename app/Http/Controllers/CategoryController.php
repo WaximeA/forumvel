@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\Topics;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -123,9 +124,14 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
+        $topics = topics::all()->where('category_id', '==', $id);
         $category = categories::find($id);
+        $data = [
+            'category' => $category,
+            'topics' => $topics->reverse()
+        ];
 
-        return view('categories/category')->with('category', $category);
+        return view('categories/category')->with($data);
     }
 
     public function getAddCategory()
