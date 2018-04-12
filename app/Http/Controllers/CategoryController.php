@@ -149,7 +149,7 @@ class CategoryController extends Controller
         foreach ($categories as $key => $category){
             $categoryId = $category->id;
             $categorytitle = $category->title;
-            $data[$categoryId] = $categorytitle;
+            $data[$categoryId] = $categoryId .'. '. $categorytitle;
         }
 
         return $data;
