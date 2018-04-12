@@ -136,6 +136,13 @@ class CategoryController extends Controller
 
     public function getAddCategory()
     {
+        $data = $this->getSelectedCategories();
+
+        return view('categories/add_category')->with('data', $data);
+    }
+
+    public function getSelectedCategories()
+    {
         $categories = $this->getCategories();
 
         $data = [];
@@ -145,11 +152,6 @@ class CategoryController extends Controller
             $data[$categoryId] = $categorytitle;
         }
 
-        return view('categories/add_category')->with('data', $data);
-    }
-
-    public function getSubCategoriesNumber()
-    {
-
+        return $data;
     }
 }
