@@ -154,4 +154,39 @@ class CategoryController extends Controller
 
         return $data;
     }
+
+    public function getEditCategory($id)
+    {
+        $category = Categories::find($id);
+        $categories = $this->getSelectedCategories();
+
+        $data = [
+            'category' => $category,
+            'categories' => $categories
+        ];
+
+        return view('categories/edit_category')->with($data);
+    }
+
+    public function submitEditCategory(Request $request)
+    {
+        // Form fields values
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $categoryId = $request->input('category_id');
+        $parentId = $request->input('parent_id');
+
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        Categories::where('id', $categoryId)
+            ->update([
+                'title' => $title,
+                'description' => $description,
+                'parent_id' => $parentId,
+            ]);
+
+        return redirect()->route('category', ['id' => $categoryId])->with('success', 'You successfully update the category #'.$categoryId.' :)');
+    }
 }

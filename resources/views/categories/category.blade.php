@@ -6,9 +6,10 @@
             <div class="col-md-8">
                 <h1><b># {{$category->id}}</b> : {{ $category->title }}</h1>
                 <p>{{ $category->description }}</p>
+               <a href="{{ route('edit_category', $category->id) }}"><span style="float: right">edit</span></a>
             </div>
         </div>
-        <div class="row">&nbsp;</div>
+        <hr>
         <div class="row justify-content-center">
             @include('topics/add_topic')
         </div>
