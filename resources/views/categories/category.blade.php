@@ -18,10 +18,9 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            {{ $topic->title }}
+                            <span><b>{{ $topic->title }}</b><a href="{{ route('edit_topic', $topic->id) }}"><span style="float: right">edit</span></a></span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Topic content : </h5>
                             <p class="card-text">{{ $topic->content }}</p>
                             <a href="{{ route('topic', $topic->id) }}" class="btn btn-primary">Go on the topic</a>
                         </div>

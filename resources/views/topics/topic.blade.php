@@ -4,8 +4,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1><b># {{ $topic->id  }}</b> {{ $topic->title }}</h1>
-                <p>{{ $topic->content }}</p>
+                <div class="card">
+                    <div class="card-header">
+                        <span><b>{{ $topic->title }}</b><a href="{{ route('edit_topic', $topic->id) }}"><span style="float: right">edit</span></a></span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ $topic->content }}</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">&nbsp;</div>

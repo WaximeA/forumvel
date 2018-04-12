@@ -42,4 +42,43 @@ class TopicController extends Controller
 
         return view('topics/topic')->with($data);
     }
+
+    public function getTopics()
+    {
+        $topics = Topics::all();
+
+        return $topics;
+    }
+
+    public function getEditTopic($id)
+    {
+        $topic = Topics::find($id);
+
+        $data = [
+            'topic' => $topic,
+        ];
+
+        return view('topics/edit_topic')->with($data);
+    }
+
+    public function submitEditTopic(Request $request)
+    {
+        // Form fields values
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $topicId = $request->input('topic_id');
+
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        Topics::where('id', $topicId)
+            ->update([
+                'title' => $title,
+                'content' => $content,
+             ]);
+
+        return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully create a new topic in the category #'.$topicId.' :)');
+    }
 }
