@@ -3,10 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col col-lg-8">
                 <h1><b># {{$category->id}}</b> : {{ $category->title }}</h1>
                 <p>{{ $category->description }}</p>
-               <a href="{{ route('edit_category', $category->id) }}"><span style="float: right">edit</span></a>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ route('edit_category', $category->id) }}" class="btn btn-primary"><span style="float: right">edit</span></a>
             </div>
         </div>
         <hr>
