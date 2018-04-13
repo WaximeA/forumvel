@@ -159,6 +159,7 @@ class CategoryController extends Controller
     {
         $category = Categories::find($id);
         $categories = $this->getSelectedCategories();
+        unset($categories[$id]);
 
         $data = [
             'category' => $category,
