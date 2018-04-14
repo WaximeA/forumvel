@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Categories;
 use App\Topics;
+use App\Comments;
+use App\User;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -35,9 +37,15 @@ class TopicController extends Controller
     {
         $topic = Topics::find($id);
         $parentCategory = Categories::find($topic->category_id);
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        $comments = Comments::all()->where('topic_id', '==', $id);
+
         $data = [
             'topic' => $topic,
-            'parentCategory' => $parentCategory
+            'parentCategory' => $parentCategory,
+            'comments' => $comments->reverse(),
+            'user' => $user
         ];
 
         return view('topics/topic')->with($data);

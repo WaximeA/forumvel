@@ -29,3 +29,8 @@ Route::post('/add-topic/submit-add-topic', 'TopicController@submitAddTopic');
 Route::get('/topic/{id}', 'TopicController@getTopic')->name('topic');
 Route::get('/edit-topic/{id}', 'TopicController@getEditTopic')->name('edit_topic');
 Route::post('/edit-topic/submit-edit-topic', 'TopicController@submitEditTopic');
+
+// COMMENTS
+Route::post('/add-comment/submit-add-comment', 'CommentController@submitAddComment');
+Route::get('/answer-comment/{id}', 'CommentController@getAnswerComment')->name('answer_comment');
+Route::post('/answer-comment/submit-answer-comment', 'CommentController@submitAnswerComment');
