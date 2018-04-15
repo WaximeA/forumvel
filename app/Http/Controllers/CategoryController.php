@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\Topics;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -123,12 +124,24 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
+        $topics = topics::all()->where('category_id', '==', $id);
         $category = categories::find($id);
+        $data = [
+            'category' => $category,
+            'topics' => $topics->reverse()
+        ];
 
-        return view('categories/category')->with('category', $category);
+        return view('categories/category')->with($data);
     }
 
     public function getAddCategory()
+    {
+        $categories = $this->getSelectedCategories();
+
+        return view('categories/add_category')->with('categories', $categories);
+    }
+
+    public function getSelectedCategories()
     {
         $categories = $this->getCategories();
 
@@ -136,14 +149,45 @@ class CategoryController extends Controller
         foreach ($categories as $key => $category){
             $categoryId = $category->id;
             $categorytitle = $category->title;
-            $data[$categoryId] = $categorytitle;
+            $data[$categoryId] = $categoryId .'. '. $categorytitle;
         }
 
-        return view('categories/add_category')->with('data', $data);
+        return $data;
     }
 
-    public function getSubCategoriesNumber()
+    public function getEditCategory($id)
     {
+        $category = Categories::find($id);
+        $categories = $this->getSelectedCategories();
+        unset($categories[$id]);
 
+        $data = [
+            'category' => $category,
+            'categories' => $categories
+        ];
+
+        return view('categories/edit_category')->with($data);
+    }
+
+    public function submitEditCategory(Request $request)
+    {
+        // Form fields values
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $categoryId = $request->input('category_id');
+        $parentId = $request->input('parent_id');
+
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        Categories::where('id', $categoryId)
+            ->update([
+                'title' => $title,
+                'description' => $description,
+                'parent_id' => $parentId,
+            ]);
+
+        return redirect()->route('category', ['id' => $categoryId])->with('success', 'You successfully update the category #'.$categoryId.' :)');
     }
 }

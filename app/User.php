@@ -34,4 +34,20 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Categories');
     }
+
+    /**
+     * Get the topics for user.
+     */
+    public function topics()
+    {
+        return $this->hasMany('App\Topics');
+    }
+
+    /**
+     * Get the comments for user.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comments');
+    }
 }

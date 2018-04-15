@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Comments extends Model
 {
     /**
-     * Get the user for the category.
+     * Get the user for the comments.
      */
     public function user()
     {
@@ -15,10 +15,10 @@ class Categories extends Model
     }
 
     /**
-     * Get the topics for categories.
+     * Get the topics for the comments.
      */
     public function topics()
     {
-        return $this->hasMany('App\Topics');
+        return $this->belongsTo('App\Topics');
     }
 }
