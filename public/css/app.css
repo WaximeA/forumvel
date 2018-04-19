@@ -10388,6 +10388,10 @@ a.text-dark:focus {
   }
 }
 
+.card {
+  margin: 0 0 10px 0;
+}
+
 .card a {
   font-weight: 700;
   color: #333;
@@ -10400,18 +10404,24 @@ a.text-dark:focus {
   padding-top: 5px;
 }
 
-.card .card-header:before {
+.card .card-header.card-parent {
+  position: relative;
+}
+
+.card .card-header.card-parent:before {
   content: "+";
   font-size: 2em;
   line-height: 0.5em;
   float: right;
+  padding: 5px 10px;
+  vertical-align: middle;
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
-.card .card-header.expanded:before {
+.card .card-header.card-parent.expanded:before {
   -webkit-transform: rotate(-225deg);
           transform: rotate(-225deg);
 }
@@ -10427,6 +10437,208 @@ a.text-dark:focus {
 
 .child-category * {
   border: none !important;
+}
+
+input,
+textarea,
+textarea.comment-area,
+textarea.comment-area:focus {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 1rem;
+  color: #555f77;
+}
+
+p {
+  line-height: 2.1rem;
+}
+
+.comments {
+  margin: 4.0rem auto 0;
+  max-width: 9.7rem;
+  padding: 0 2.0rem;
+}
+
+.comment-wrap {
+  margin-bottom: 2.0rem;
+  display: table;
+  width: 100%;
+  min-height: 8.5rem;
+}
+
+.comment-wrap.comment-child {
+  margin-top: -20px;
+  float: right;
+  width: 100%;
+  padding: 0;
+}
+
+.comment-wrap.comment-child * {
+  float: none;
+}
+
+.photo {
+  padding-top: 1.0rem;
+  display: table-cell;
+  width: 5.6rem;
+}
+
+.photo .avatar {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background-size: contain;
+}
+
+.comment-block {
+  padding: 1.6rem;
+  background-color: #fff;
+  display: table-cell;
+  vertical-align: top;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.comment-block h3 {
+  padding-bottom: 10px;
+}
+
+.comment-block textarea {
+  width: 100%;
+  resize: none;
+}
+
+.comment-text {
+  margin-bottom: 2rem;
+}
+
+.bottom-comment {
+  color: #acb4c2;
+  font-size: 1rem;
+}
+
+.comment-date {
+  float: left;
+}
+
+.comment-actions {
+  float: right;
+}
+
+.comment-actions li {
+  display: inline;
+  margin: -2px;
+  cursor: pointer;
+}
+
+.comment-actions li.complain {
+  padding-right: 1.2rem;
+  border-right: 1px solid #e1e5eb;
+}
+
+.comment-actions li.reply {
+  padding-left: 1.2rem;
+  padding-right: 2rem;
+}
+
+.comment-actions li.reply a {
+  color: #212529;
+}
+
+.comment-actions li:hover {
+  color: #212529;
+}
+
+input.btn-submit {
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #1ECD97;
+  color: #1ECD97;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+input.btn-submit:hover {
+  color: white;
+  background: #1ECD97;
+}
+
+input.btn-submit:active {
+  letter-spacing: 2px;
+}
+
+input.btn-submit:after {
+  content: "SUBMIT";
+}
+
+.onclic {
+  width: 40px;
+  border-color: #bbbbbb;
+  border-width: 3px;
+  font-size: 0;
+  border-left-color: #1ECD97;
+  -webkit-animation: rotating 2s 0.25s linear infinite;
+          animation: rotating 2s 0.25s linear infinite;
+}
+
+.onclic:after {
+  content: "";
+}
+
+.onclic:hover {
+  color: #1ECD97;
+  background: white;
+}
+
+.validate {
+  font-size: 13px;
+  color: white;
+  background: #1ECD97;
+}
+
+.validate:after {
+  font-family: 'FontAwesome';
+  content: "\F00C";
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .navbar-laravel {
