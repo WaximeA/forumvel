@@ -10396,12 +10396,33 @@ a.text-dark:focus {
 
 .card p {
   margin: 0;
-  font-size: 1rem;
-  padding-left: 10px;
+  font-size: 0.9rem;
+  padding-top: 5px;
+}
+
+.card .card-header:before {
+  content: "+";
+  font-size: 2em;
+  line-height: 0.5em;
+  float: right;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+.card .card-header.expanded:before {
+  -webkit-transform: rotate(-225deg);
+          transform: rotate(-225deg);
+}
+
+.child-category {
+  display: none;
 }
 
 .child-category a {
   margin-left: 15px;
+  line-height: 2;
 }
 
 .child-category * {

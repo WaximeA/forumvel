@@ -30,7 +30,7 @@
                 @isset($category->parent_id )
                     <div class="card-body">
                         <p class="card-text child-category parent-{{$category->parent_id}}" data-parent="{{$category->parent_id}}" >
-                            <a href="{{ route('category', $category->id) }}">{{ $category->title }}</a></p>
+                            <a href="{{ route('category', $category->id) }}">{{ $category->title }}</a> ({{$category->description}})</p>
                 @endif
                 @empty
                     <p>There isn't any category.. create one <a href="{{ route('add_category') }}" class="btn btn-primary">here</a></p>

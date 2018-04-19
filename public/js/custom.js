@@ -5,3 +5,10 @@ $('.child-category').each(function () {
     console.log(subCatContent);
     $(this).insertAfter(".parent-category.cat-"+parentId)
 });
+
+$('.card-header').each(function () {
+   $(this).on("click", function () {
+       $(this).toggleClass("expanded");
+       $(this).siblings($('.child-category')).slideToggle();
+   });
+});
