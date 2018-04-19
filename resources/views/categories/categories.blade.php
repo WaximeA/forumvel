@@ -9,18 +9,6 @@
                     <p class="btn float-right"><a href="{{ URL::route('add_category') }}" class="btn btn-success">Create a category</a></p>
                 </div>
                 <br>
-                {{--<ul class="list-group list-group-flush">--}}
-                        {{--@forelse ($categories as $category)--}}
-                            {{--<li @empty($category->parent_id ) class="list-group-item parent-category cat-{{$category->id}}" data-cat="{{$category->id}}"@endif--}}
-                            {{--@isset($category->parent_id ) class="list-group-item child-category parent-{{$category->parent_id}}" data-parent="{{$category->parent_id}}" @endif>--}}
-                                {{--<a href="{{ route('category', $category->id) }}">{{ $category->title }}</a>--}}
-                            {{--</li>--}}
-                        {{--@empty--}}
-                            {{--<p>There isn't any category.. create one <a href="{{ route('add_category') }}" class="btn btn-primary">here</a></p>--}}
-                        {{--@endforelse--}}
-                {{--</ul>--}}
-                {{--<br>--}}
-
                 @forelse ($categories as $category)
                 @empty($category->parent_id )
                 <div class="card">
