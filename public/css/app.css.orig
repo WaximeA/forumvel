@@ -10388,6 +10388,8 @@ a.text-dark:focus {
   }
 }
 
+<<<<<<< HEAD
+=======
 .card a {
   font-weight: 700;
   color: #333;
@@ -10429,6 +10431,7 @@ a.text-dark:focus {
   border: none !important;
 }
 
+>>>>>>> feature/categories_display
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
