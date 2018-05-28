@@ -36,3 +36,4 @@ Route::get('/delete-topic/{id}', 'TopicController@getDeleteTopic')->name('delete
 Route::post('/add-comment/submit-add-comment', 'CommentController@submitAddComment');
 Route::get('/answer-comment/{id}', 'CommentController@getAnswerComment')->name('answer_comment');
 Route::post('/answer-comment/submit-answer-comment', 'CommentController@submitAnswerComment');
+Route::get('/delete-comment/{id}', 'CommentController@getDeleteComment')->name('delete_comment');

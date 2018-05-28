@@ -45,7 +45,31 @@
                             <p>Commentaire #{{ $comment->id }} @if($comment->parent_id)/ Parent comment : # {{ $comment->parent_id }} @endif</p>
                             <span>
                                 <b>#{{ $user->id }} {{ ucfirst($user->name) }}</b> : <i>{{ $user->email }}</i>
-                                <a href="{{ route('answer_comment', $comment->id) }}" class="btn btn-sm btn-primary" style="float:right">Answer to #{{ $comment->id }}</a>
+                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTopic" style="float:right; color: white; margin-left: 5px">delete</a>
+                                <a href="{{ route('answer_comment', $comment->id) }}" class="btn btn-sm btn-primary" style="float:right; color: white">Answer to #{{ $comment->id }}</a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteTopic" tabindex="-1" role="dialog" aria-labelledby="deleteTopic" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="exampleModalLabel">Delete comment <b>#{{ $comment->id  }} : {{ $comment->title }}</b> </h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>Are you shure you want to delete this comment ?</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <a href="{{ route('delete_comment', $comment->id) }}">
+                                                    <button type="button" class="btn btn-danger">Delete</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </span>
                         </div>
                         <div class="card-body">
