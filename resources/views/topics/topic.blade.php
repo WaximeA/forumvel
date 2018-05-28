@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col col-lg-8">
-                <h1><b># {{$topic->id}}</b> : {{ $topic->title }}</h1>
+                <h1>Topic <b># {{$topic->id}}</b> : {{ $topic->title }}</h1>
                 <p>{{ $topic->content }}</p>
             </div>
             <div class="col-md-2">
