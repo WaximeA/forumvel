@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Comment;
 
 class Topics extends Model
 {
@@ -28,5 +29,13 @@ class Topics extends Model
     public function comments()
     {
         return $this->hasMany('App\Comments');
+    }
+
+    public function deleteTopic()
+    {
+        $topicComment = Comments::where('topic_id', $this->id);
+        $topicComment->delete();
+
+        return parent::delete();
     }
 }

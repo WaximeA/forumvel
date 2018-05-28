@@ -93,4 +93,15 @@ class TopicController extends Controller
 
         return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully create a new topic in the category #'.$topicId.' :)');
     }
+
+    public function getDeleteTopic($id)
+    {
+        $currentTopic = Topics::find($id);
+        $currentTopicCategoryId = $currentTopic->category_id;
+
+        // delete current topic
+        $currentTopic->deleteTopic();
+
+        return redirect()->route('category', ['id' => $currentTopicCategoryId]);
+    }
 }

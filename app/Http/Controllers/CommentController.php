@@ -6,6 +6,7 @@ use App\User;
 use App\Topics;
 use App\Comments;
 use Illuminate\Http\Request;
+use PhpParser\Comment;
 
 class CommentController extends Controller
 {
@@ -68,5 +69,14 @@ class CommentController extends Controller
         return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully answer to the comment #'.$commentId.' :)');
     }
 
+    public function getDeleteComment($id)
+    {
+        $currentComment = Comments::find($id);
+        $currentTopicId = $currentComment->topic_id;
 
+        // delete current topic
+        $currentComment->delete();
+
+        return redirect()->route('topic', ['id' => $currentTopicId]);
+    }
 }

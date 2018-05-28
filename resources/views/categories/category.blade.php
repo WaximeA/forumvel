@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col col-lg-8">
-                <h1><b># {{$category->id}}</b> : {{ $category->title }}</h1>
+                <h1>Category <b># {{$category->id}}</b> : {{ $category->title }}</h1>
                 <p>{{ $category->description }}</p>
             </div>
             <div class="col-md-2">
@@ -43,11 +43,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <span><b>{{ $topic->title }}</b><a href="{{ route('edit_topic', $topic->id) }}"><span class="btn btn-primary btn-sm" style="float: right">edit</span></a></span>
+                            <span><b>{{ $topic->title }}</b></span>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ $topic->content }}</p>
-                            <a href="{{ route('topic', $topic->id) }}" class="btn btn-primary">Go on the topic</a>
+                            <a href="{{ route('topic', $topic->id) }}" class="btn btn-sm btn-primary">Go on the topic</a>
                         </div>
                     </div>
                 </div>
