@@ -23,14 +23,17 @@ Route::post('/add-category/submit-add-category', 'CategoryController@submitAddCa
 Route::get('/category/{id}', 'CategoryController@getCategory')->name('category');
 Route::get('/edit-category/{id}', 'CategoryController@getEditCategory')->name('edit_category');
 Route::post('/edit-category/submit-edit-category', 'CategoryController@submitEditCategory');
+Route::get('/delete-category/{id}', 'CategoryController@getDeleteCategory')->name('delete_category');
 
 // TOPICS
 Route::post('/add-topic/submit-add-topic', 'TopicController@submitAddTopic');
 Route::get('/topic/{id}', 'TopicController@getTopic')->name('topic');
 Route::get('/edit-topic/{id}', 'TopicController@getEditTopic')->name('edit_topic');
 Route::post('/edit-topic/submit-edit-topic', 'TopicController@submitEditTopic');
+Route::get('/delete-topic/{id}', 'TopicController@getDeleteTopic')->name('delete_topic');
 
 // COMMENTS
 Route::post('/add-comment/submit-add-comment', 'CommentController@submitAddComment');
 Route::get('/answer-comment/{id}', 'CommentController@getAnswerComment')->name('answer_comment');
 Route::post('/answer-comment/submit-answer-comment', 'CommentController@submitAnswerComment');
+Route::get('/delete-comment/{id}', 'CommentController@getDeleteComment')->name('delete_comment');
