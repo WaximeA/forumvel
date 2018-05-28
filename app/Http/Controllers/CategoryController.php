@@ -190,4 +190,30 @@ class CategoryController extends Controller
 
         return redirect()->route('category', ['id' => $categoryId])->with('success', 'You successfully update the category #'.$categoryId.' :)');
     }
+
+    public function getDeleteCategory($id)
+    {
+        $currentCategory = Categories::find($id);
+        $categories = Categories::all();
+
+        foreach ($categories as $key => $subCategory)
+        {
+            $subCategoryId = $subCategory->id;
+            $subParentId = $subCategory->parent_id;
+
+            if ($subParentId == $id ){
+                // check if the sub category is the parent of one another
+                $subSubCategory =  Categories::where('parent_id', $subCategoryId);
+                $subSubCategory->delete();
+
+                // delete subcategory of current category
+                $subCategory->deleteCategory();
+            }
+        }
+        // delete current category
+        $currentCategory->deleteCategory();
+
+        return redirect()->route('categories');
+    }
+
 }

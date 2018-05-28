@@ -21,4 +21,12 @@ class Categories extends Model
     {
         return $this->hasMany('App\Topics');
     }
+
+    public function deleteCategory()
+    {
+        $categoryTopics = Topics::where('category_id', $this->id);
+        $categoryTopics->delete();
+
+        return parent::delete();
+    }
 }

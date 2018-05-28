@@ -23,6 +23,7 @@ Route::post('/add-category/submit-add-category', 'CategoryController@submitAddCa
 Route::get('/category/{id}', 'CategoryController@getCategory')->name('category');
 Route::get('/edit-category/{id}', 'CategoryController@getEditCategory')->name('edit_category');
 Route::post('/edit-category/submit-edit-category', 'CategoryController@submitEditCategory');
+Route::get('/delete-category/{id}', 'CategoryController@getDeleteCategory')->name('delete_category');
 
 // TOPICS
 Route::post('/add-topic/submit-add-topic', 'TopicController@submitAddTopic');
