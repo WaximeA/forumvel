@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comments');
     }
+
+    /**
+     * Get the user role.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
 }
