@@ -18,12 +18,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // CATEGORIES
 Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/add-category', 'CategoryController@getAddCategory')->name('add_category');
-Route::post('/add-category/submit-add-category', 'CategoryController@submitAddCategory');
+Route::get('/add-category', 'CategoryController@getAddCategory')->name('add_category')->middleware('checkrole:administrator,moderator');
+Route::post('/add-category/submit-add-category', 'CategoryController@submitAddCategory')->middleware('checkrole:administrator,moderator');
 Route::get('/category/{id}', 'CategoryController@getCategory')->name('category');
-Route::get('/edit-category/{id}', 'CategoryController@getEditCategory')->name('edit_category');
-Route::post('/edit-category/submit-edit-category', 'CategoryController@submitEditCategory');
-Route::get('/delete-category/{id}', 'CategoryController@getDeleteCategory')->name('delete_category');
+Route::get('/edit-category/{id}', 'CategoryController@getEditCategory')->name('edit_category')->middleware('checkrole:administrator,moderator');
+Route::post('/edit-category/submit-edit-category', 'CategoryController@submitEditCategory')->middleware('checkrole:administrator,moderator');
+Route::get('/delete-category/{id}', 'CategoryController@getDeleteCategory')->name('delete_category')->middleware('checkrole:administrator,moderator');
 
 // TOPICS
 Route::post('/add-topic/submit-add-topic', 'TopicController@submitAddTopic');
