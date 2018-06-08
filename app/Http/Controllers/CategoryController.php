@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Topics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
+
+    const ROLE_ADMINISTRATOR = 'administrator';
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $isAdministrator = $this->isAdministrator();
         $categories = $this->getCategories();
         $subCategoriesNumber = 0;
         foreach ($categories as $category){
@@ -25,74 +30,12 @@ class CategoryController extends Controller
                 $subCategoriesNumber += 1;
             }
         }
+        $data = [
+            'categories' => $categories,
+            'isAdministrator' => $isAdministrator
+        ];
 
-        return view('categories/categories')->with('categories', $categories);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('categories/categories')->with($data);
     }
 
     public function submitAddCategory(Request $request)
@@ -124,11 +67,13 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
+        $isAdministrator = $this->isAdministrator();
         $topics = topics::all()->where('category_id', '==', $id);
         $category = categories::find($id);
         $data = [
             'category' => $category,
-            'topics' => $topics->reverse()
+            'topics' => $topics->reverse(),
+            'isAdministrator' => $isAdministrator
         ];
 
         return view('categories/category')->with($data);
@@ -216,4 +161,12 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
+    public function isAdministrator()
+    {
+        $roleAdministrator = self::ROLE_ADMINISTRATOR;
+        $user = Auth::user();
+        $isAdministrator = $user->hasRole($roleAdministrator);
+
+        return $isAdministrator;
+    }
 }

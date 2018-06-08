@@ -8,9 +8,10 @@
                 <p>{{ $category->description }}</p>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('edit_category', $category->id) }}" class="btn btn-primary btn-sm"><span style="float: right">edit</span></a>
-                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
-
+                @if($isAdministrator)
+                    <a href="{{ route('edit_category', $category->id) }}" class="btn btn-primary btn-sm"><span style="float: right">edit</span></a>
+                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
+                @endif
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

@@ -7,6 +7,7 @@ use App\Topics;
 use App\Comments;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -40,12 +41,16 @@ class TopicController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($userId);
         $comments = Comments::all()->where('topic_id', '==', $id);
+        $isUserIsAuthor = $this->isUserIsAuthor($topic);
+        $isAllowedEdit = $this->isAllowedEdit();
 
         $data = [
             'topic' => $topic,
             'parentCategory' => $parentCategory,
             'comments' => $comments->reverse(),
-            'user' => $user
+            'user' => $user,
+            'isUserIsAuthor' => $isUserIsAuthor,
+            'isAllowedEdit' => $isAllowedEdit
         ];
 
         return view('topics/topic')->with($data);
@@ -103,5 +108,34 @@ class TopicController extends Controller
         $currentTopic->deleteTopic();
 
         return redirect()->route('category', ['id' => $currentTopicCategoryId]);
+    }
+
+    public function isUserIsAuthor($topic)
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $topicAuthorId = $topic->author_id;
+
+        if ($userId != $topicAuthorId){
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAllowedEdit()
+    {
+        $allowedRoles = [
+            'administrator',
+            'moderator'
+        ];
+        $user = Auth::user();
+        foreach ($allowedRoles as $allowedRole){
+            if ($user->hasRole($allowedRole)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }
