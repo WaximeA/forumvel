@@ -8,7 +8,7 @@
                 <p>{{ $topic->content }}</p>
             </div>
             <div class="col-md-2">
-                @if($isUserIsAuthor)
+                @if($isUserIsAuthor || $isAllowedEdit)
                     <a href="{{ route('edit_topic', $topic->id) }}" class="btn btn-sm btn-primary"><span style="float: right">edit</span></a>
                     <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
                 @endif

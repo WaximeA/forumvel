@@ -42,13 +42,15 @@ class TopicController extends Controller
         $user = User::find($userId);
         $comments = Comments::all()->where('topic_id', '==', $id);
         $isUserIsAuthor = $this->isUserIsAuthor($topic);
+        $isAllowedEdit = $this->isAllowedEdit();
 
         $data = [
             'topic' => $topic,
             'parentCategory' => $parentCategory,
             'comments' => $comments->reverse(),
             'user' => $user,
-            'isUserIsAuthor' => $isUserIsAuthor
+            'isUserIsAuthor' => $isUserIsAuthor,
+            'isAllowedEdit' => $isAllowedEdit
         ];
 
         return view('topics/topic')->with($data);
@@ -119,5 +121,21 @@ class TopicController extends Controller
         }
 
         return true;
+    }
+
+    public function isAllowedEdit()
+    {
+        $allowedRoles = [
+            'administrator',
+            'moderator'
+        ];
+        $user = Auth::user();
+        foreach ($allowedRoles as $allowedRole){
+            if ($user->hasRole($allowedRole)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }
