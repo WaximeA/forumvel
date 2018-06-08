@@ -8,9 +8,10 @@
                 <p>{{ $topic->content }}</p>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('edit_topic', $topic->id) }}" class="btn btn-sm btn-primary"><span style="float: right">edit</span></a>
-                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
-
+                @if($isUserIsAuthor)
+                    <a href="{{ route('edit_topic', $topic->id) }}" class="btn btn-sm btn-primary"><span style="float: right">edit</span></a>
+                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
+                @endif
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
