@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
 
-    const ROLE_MEMBER = 'member';
+    const ROLE_ADMINISTRATOR = 'administrator';
 
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $isMember = $this->isMember();
+        $isAdministrator = $this->isAdministrator();
         $categories = $this->getCategories();
         $subCategoriesNumber = 0;
         foreach ($categories as $category){
@@ -32,7 +32,7 @@ class CategoryController extends Controller
         }
         $data = [
             'categories' => $categories,
-            'isMember' => $isMember
+            'isAdministrator' => $isAdministrator
         ];
 
         return view('categories/categories')->with($data);
@@ -67,13 +67,13 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
-        $isMember = $this->isMember();
+        $isAdministrator = $this->isAdministrator();
         $topics = topics::all()->where('category_id', '==', $id);
         $category = categories::find($id);
         $data = [
             'category' => $category,
             'topics' => $topics->reverse(),
-            'isMember' => $isMember
+            'isAdministrator' => $isAdministrator
         ];
 
         return view('categories/category')->with($data);
@@ -161,12 +161,12 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
-    public function isMember()
+    public function isAdministrator()
     {
-        $roleMember = self::ROLE_MEMBER;
+        $roleAdministrator = self::ROLE_ADMINISTRATOR;
         $user = Auth::user();
-        $isMember = $user->hasRole($roleMember);
+        $isAdministrator = $user->hasRole($roleAdministrator);
 
-        return $isMember;
+        return $isAdministrator;
     }
 }

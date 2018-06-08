@@ -8,7 +8,7 @@
                 <p>{{ $category->description }}</p>
             </div>
             <div class="col-md-2">
-                @if(!$isMember)
+                @if($isAdministrator)
                     <a href="{{ route('edit_category', $category->id) }}" class="btn btn-primary btn-sm"><span style="float: right">edit</span></a>
                     <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
                 @endif

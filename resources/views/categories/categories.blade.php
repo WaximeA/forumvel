@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="d-flex">
                     <h1>Categories</h1>
-                    @if(!$isMember)
+                    @if($isAdministrator)
                         <p class="btn float-right"><a href="{{ URL::route('add_category') }}" class="btn btn-success">Create a category</a></p>
                     @endif
                 </div>
