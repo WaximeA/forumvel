@@ -24,6 +24,7 @@
 <body>
     <div id="app">
         @include('includes/navbar')
+        @include('includes/danger_message')
         <main class="py-4">
             @yield('content')
         </main>

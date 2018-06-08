@@ -8,9 +8,10 @@
                 <p>{{ $topic->content }}</p>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('edit_topic', $topic->id) }}" class="btn btn-sm btn-primary"><span style="float: right">edit</span></a>
-                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
-
+                @if($isUserIsAuthor || $isAllowedEdit)
+                    <a href="{{ route('edit_topic', $topic->id) }}" class="btn btn-sm btn-primary"><span style="float: right">edit</span></a>
+                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">delete</a>
+                @endif
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -45,7 +46,9 @@
                             <p>Commentaire #{{ $comment->id }} @if($comment->parent_id)/ Parent comment : # {{ $comment->parent_id }} @endif</p>
                             <span>
                                 <b>#{{ $user->id }} {{ ucfirst($user->name) }}</b> : <i>{{ $user->email }}</i>
-                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTopic" style="float:right; color: white; margin-left: 5px">delete</a>
+                                @if($user->id === $comment->user_id || $isAllowedEdit)
+                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTopic" style="float:right; color: white; margin-left: 5px">delete</a>
+                                @endif
                                 <a href="{{ route('answer_comment', $comment->id) }}" class="btn btn-sm btn-primary" style="float:right; color: white">Answer to #{{ $comment->id }}</a>
 
                                 <!-- Modal -->
