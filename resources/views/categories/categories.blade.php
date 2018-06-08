@@ -6,7 +6,9 @@
             <div class="col-md-8">
                 <div class="d-flex">
                     <h1>Categories</h1>
-                    <p class="btn float-right"><a href="{{ URL::route('add_category') }}" class="btn btn-success">Create a category</a></p>
+                    @if(!$isMember)
+                        <p class="btn float-right"><a href="{{ URL::route('add_category') }}" class="btn btn-success">Create a category</a></p>
+                    @endif
                 </div>
                 <br>
                 @forelse ($categories as $category)
@@ -21,7 +23,14 @@
                             <a href="{{ route('category', $category->id) }}">{{ $category->title }}</a> ({{$category->description}})</p>
                 @endif
                 @empty
-                    <p>There isn't any category.. create one <a href="{{ route('add_category') }}" class="btn btn-primary">here</a></p>
+                    <p>
+                        <span>There isn't any category..</span>
+                        @if(!$isMember)
+                            <span>create one </span>
+                            <a href="{{ route('add_category') }}" class="btn btn-primary">here</a>
+                        @endif
+                    </p>
+
                 @endforelse
             </div>
         </div>

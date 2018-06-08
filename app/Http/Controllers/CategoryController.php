@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Topics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
+
+    const ROLE_MEMBER = 'member';
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $isMember = $this->isMember();
         $categories = $this->getCategories();
         $subCategoriesNumber = 0;
         foreach ($categories as $category){
@@ -25,8 +30,12 @@ class CategoryController extends Controller
                 $subCategoriesNumber += 1;
             }
         }
+        $data = [
+            'categories' => $categories,
+            'isMember' => $isMember
+        ];
 
-        return view('categories/categories')->with('categories', $categories);
+        return view('categories/categories')->with($data);
     }
 
     public function submitAddCategory(Request $request)
@@ -58,11 +67,13 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
+        $isMember = $this->isMember();
         $topics = topics::all()->where('category_id', '==', $id);
         $category = categories::find($id);
         $data = [
             'category' => $category,
-            'topics' => $topics->reverse()
+            'topics' => $topics->reverse(),
+            'isMember' => $isMember
         ];
 
         return view('categories/category')->with($data);
@@ -150,4 +161,12 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
+    public function isMember()
+    {
+        $roleMember = self::ROLE_MEMBER;
+        $user = Auth::user();
+        $isMember = $user->hasRole($roleMember);
+
+        return $isMember;
+    }
 }
