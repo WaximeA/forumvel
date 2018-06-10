@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use PhpParser\Comment;
+use Illuminate\Database\Eloquent\Builder;
 
 class Topics extends Model
 {
