@@ -77,6 +77,9 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ $comment->content }}</p>
+                            <div>
+                                <img src="{{ url('/') }}/{{$comment->image_src}}" alt="" width="300px">
+                            </div>
                         </div>
                     </div>
                 </div>

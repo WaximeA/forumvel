@@ -20,6 +20,8 @@ class CreateTableCategoriesTopicsComments extends Migration
             $table->string('description');
             $table->unsignedInteger('creator_id');
             $table->unsignedInteger('parent_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
+            $table->string('image_src')->nullable();
             $table->timestamps();
         });
 
@@ -29,6 +31,8 @@ class CreateTableCategoriesTopicsComments extends Migration
             $table->string('content');
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
+            $table->string('image_src')->nullable();
             $table->timestamps();
         });
 
@@ -38,6 +42,8 @@ class CreateTableCategoriesTopicsComments extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('topic_id');
             $table->unsignedInteger('parent_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
+            $table->string('image_src')->nullable();
             $table->timestamps();
         });
     }

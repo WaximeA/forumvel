@@ -25,7 +25,7 @@
                 @empty
                     <p>
                         <span>There isn't any category..</span>
-                        @if(!$isMember)
+                        @if($isAdministrator)
                             <span>create one </span>
                             <a href="{{ route('add_category') }}" class="btn btn-primary">here</a>
                         @endif

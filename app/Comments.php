@@ -21,4 +21,21 @@ class Comments extends Model
     {
         return $this->belongsTo('App\Topics');
     }
+
+    /**
+     * Get the comment image.
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Images');
+    }
+
+    public function deleteComment()
+    {
+        $commentImage = Images::where('comment_id', $this->id);
+        $commentImage->delete();
+
+
+        return parent::delete();
+    }
 }
