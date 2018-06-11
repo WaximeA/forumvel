@@ -11,7 +11,7 @@
 https://laravel.com/
 
 ## Installation
-- run ``composer install``
+- run ``$ composer install``
 - change database credentials in .env file
 ```
 DB_CONNECTION=mysql
@@ -22,3 +22,6 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 - If you have a problem about a too long key size during the database migration, follow theses instructions : https://laravel-news.com/laravel-5-4-key-too-long-error
+
+- run ``$ php artisan migrate``
+- run ``$ php artisan db:seed``
