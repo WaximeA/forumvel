@@ -11,6 +11,7 @@ class TopicsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         // Add music sheets topic
         $topic1 = new \App\Topics();
         $topic1->id = 1;
@@ -142,5 +143,6 @@ class TopicsTableSeeder extends Seeder
         $topic15->author_id = 5;
         $topic15->category_id = 12;
         $topic15->save();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
