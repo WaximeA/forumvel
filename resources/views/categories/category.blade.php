@@ -44,11 +44,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <span><b>{{ $topic->title }}</b></span>
+                            <a href="{{ route('topic', $topic->id) }}"><span><b>{{ $topic->title }}</b></span></a>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ $topic->content }}</p>
-                            <a href="{{ route('topic', $topic->id) }}" class="btn btn-sm btn-primary">Go on the topic</a>
+                            <a href="{{ route('topic', $topic->id) }}" class="btn btn-primary btn-sm" style="float: right; color: white"><span>Go on the topic</span></a>
                         </div>
                     </div>
                 </div>
