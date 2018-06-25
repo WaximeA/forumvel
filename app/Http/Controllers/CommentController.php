@@ -36,11 +36,12 @@ class CommentController extends Controller
         $comment->save();
 
         $commentId = $comment->id;
-        $fetchImage = $this->addCommentImage($commentImage, $commentId);
-
-        $comment->image_id = $fetchImage['imageId'];
-        $comment->image_src = $fetchImage['imageSrc'];
-        $comment->save();
+        if (isset($commentImage)) {
+            $fetchImage = $this->addCommentImage($commentImage, $commentId);
+            $comment->image_id = $fetchImage['imageId'];
+            $comment->image_src = $fetchImage['imageSrc'];
+            $comment->save();
+        }
 
         return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully add a comment on topic #'.$topicId.' :)');
     }
@@ -73,14 +74,15 @@ class CommentController extends Controller
         $comment->user_id = auth()->user()->id;
         $comment->topic_id = $topicId;
         $comment->parent_id = $parentId;
-        $comment->save();@
+        $comment->save();
 
         $commentId = $comment->id;
-        $fetchImage = $this->addCommentImage($commentImage, $commentId);
-
-        $comment->image_id = $fetchImage['imageId'];
-        $comment->image_src = $fetchImage['imageSrc'];
-        $comment->save();
+        if (isset($commentImage)) {
+            $fetchImage = $this->addCommentImage($commentImage, $commentId);
+            $comment->image_id = $fetchImage['imageId'];
+            $comment->image_src = $fetchImage['imageSrc'];
+            $comment->save();
+        }
 
         return redirect()->route('topic', ['id' => $topicId])->with('success', 'You successfully answer to the comment #'.$commentId.' :)');
     }
