@@ -12,3 +12,9 @@ $('.card-header').each(function () {
        $(this).siblings($('.child-category')).slideToggle();
    });
 });
+
+$('.card-body').each(function () {
+    if ($('this').empty()) {
+        $(this).hide();
+    }
+});

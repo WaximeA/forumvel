@@ -21,6 +21,7 @@
                     <div class="card-body">
                         <p class="card-text child-category parent-{{$category->parent_id}}" data-parent="{{$category->parent_id}}" >
                             <a href="{{ route('category', $category->id) }}">{{ $category->title }}</a> ({{$category->description}})</p>
+                    </div>
                 @endif
                 @empty
                     <p>
